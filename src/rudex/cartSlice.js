@@ -13,7 +13,7 @@ const cartSlice = createSlice({
       
 
       if (product) {
-        const existingProduct = state.products.find((p) => p.id === action.payload.id);
+        const existingProduct = state.products.find((p) => p.key === action.payload.key);
         
         if (existingProduct) {
           existingProduct.quantity += action.payload.quantity;
@@ -24,9 +24,9 @@ const cartSlice = createSlice({
         }
         
         state.quantity += action.payload.quantity;
-        console.log(state.total);
-        state.total += action.payload.price * action.payload.quantity;
-        console.log(state.total);
+      
+        state.total += action.payload.first_publish_year * action.payload.quantity;
+        
         
       }
     },
@@ -37,21 +37,21 @@ const cartSlice = createSlice({
     },
     removeProduct: (state, action) => {
       const productId = action.payload;
-      const productIndex = state.products.findIndex((p) => p.id === productId);
+      const productIndex = state.products.findIndex((p) => p.key === productId);
       if (productIndex !== -1) {
         const product = state.products[productIndex];
         state.products.splice(productIndex, 1);
         state.quantity -= product.quantity;
-        state.total -= product.price * product.quantity;
+        state.total -= product.first_publish_year * product.quantity;
       }
     },
     updateCart: (state, action) => {
       const { productId, quantity } = action.payload;
       
-      const product = state.products.find((p) => p.id === productId);
+      const product = state.products.find((p) => p.key === productId);
       if (product) {
         state.quantity += quantity - product.quantity;
-        state.total += product.price * (quantity - product.quantity);
+        state.total += product.first_publish_year * (quantity - product.quantity);
         product.quantity = quantity;
       }
     },
