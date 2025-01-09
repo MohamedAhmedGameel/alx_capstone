@@ -27,6 +27,6 @@ To run this project locally, follow these steps:
 ### 1. Clone the repository
 
 ```bash
-git clone [https://github.com/your-username/book-store-app.git](https://github.com/MohamedAhmedGameel/alx_capstone)
+git clone https://github.com/MohamedAhmedGameel/alx_capstone
 cd book-store-app
 ```
